@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .box{
+        width: 300px;
+        height: 300px;
+        background: #DF7492;
+        border: 2px solid #FFE066;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+</style>
+<body>
+    <div class="box"></div>
+</body>
+</html>
+<script>
+    let box=document.querySelector(".box");
+    box.onmousedown=function(event1){
+        event=event1||window.event;
+        let x0=event.clientX;
+        let y0=event.clientY;
+        let x=box.offsetLeft;
+        let y=box.offsetTop;
+        console.log(x0, y0);
+        box.onmousemove=function(event2){
+            event3=event2||window.event;
+            let x1=event3.clientX;
+            let y1=event3.clientY;
+            let x2=x1-x0+x;
+            let y2=y1-y0+y;
+            box.style=`top:${y2}px;left:${x2}px;`;
+            box.onmouseup=function(){
+                box.onmousemove="";
+                box.onmouseup="";
+            }
+        }
+    }
+</script>
